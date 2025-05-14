@@ -21,6 +21,42 @@ function log(str)
   sendVariant({ [0] = 'OnTextOverlay', [1] = str })
 end 
 
+function secretlolfuckbitcheweilovedindanurachmadyanti()
+	for _, tile in pairs(getTile()) do 
+		if tile.fg == 1926 then
+			if tile.getFlags.enabled then
+				sendPacketRaw(true, {
+					type = 3,
+					value = 0,
+					punchx = tile.pos.x,
+					punchy = tile.pos.y,
+					x = getLocal().pos.x,
+					y = getLocal().pos.y
+				})
+			else
+				sendPacketRaw(true, {
+					type = 3,
+					value = 6276,
+					punchx = tile.pos.x,
+					punchy = tile.pos.y,
+					x = getLocal().pos.x,
+					y = getLocal().pos.y
+				})
+			end
+			for i = 18, 20 do
+				sendPacketRaw(true, {
+					type = 3,
+					value = 2826,
+					punchx = i,
+					punchy = 23,
+					x = getLocal().pos.x,
+					y = getLocal().pos.y
+				})
+			end
+		end 
+	end
+end
+
 function getpoint(a, b)
   sendPacketRaw(false, { x = a * 32, y = b * 32, punchx = -1, punchy = -1, netid = getLocal().netId })
   sendPacketRaw(false, { type = 3, value = 32, punchx = a, punchy = b, x = a * 32, y = b * 32 })
@@ -53,7 +89,17 @@ AddHook('OnTextPacket', 'dravenoxScript', function(_, str)
         getpoint(_t.booth[1], _t.booth[2])
         return true
     end
-    
+
+    if str:find('/secret') then
+        createthread(function()
+		int(3)
+		secretlolfuckbitcheweilovedindanurachmadyanti()
+		int(3)
+		log('`4Removing `5Mirror Maze `2!')			
+	end )
+	return true		
+    end 
+		
     if str:find('/ticket (%d+)') then
     	local amount = str:match('/ticket (%d+)')
     	createthread(function()
