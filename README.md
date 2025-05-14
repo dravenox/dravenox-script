@@ -1,2 +1,1 @@
-# dravenox-script
-pemula
+hai sepuh
