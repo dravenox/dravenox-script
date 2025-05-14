@@ -1,7 +1,7 @@
 local satantersakiti = ''
 sendPacket(
   2, 
-  'action|buy\item|bigitems\n'
+  'action|buy\nitem|bigitems\n'
 )
 
 function log(zz)sendVariant({[0]='OnTextOverlay',[1]=zz})
