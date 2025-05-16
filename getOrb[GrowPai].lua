@@ -18,7 +18,7 @@ end
 
 function enter(a, b)
     Sleep(500)
-    SendPacketRaw({ type = 7, pos_x = a, pos_y = b })
+    SendPacketRaw({ type = 7, int_x = a, int_y = b })
 end 
 
 SendPacket(
