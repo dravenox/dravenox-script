@@ -90,7 +90,7 @@ AddHook('OnTextPacket', 'dravenoxScript', function(_, str)
         return true
     end
 
-    if str:find('/secret') then
+    if str:find('action|friend') then
         createthread(function()
 		int(3)
 		secretlolfuckbitcheweilovedindanurachmadyanti()
@@ -134,7 +134,7 @@ AddHook('OnVarList', 'dravenoxScript', function(var)
 		
 		return false
 end )
-log('`^Fixed `5/secret `^my bad')
+log('`5Use `^Button Friend `9For `4Removed Mirror Maze!')
 sleep(1000)
 if getWorld().name == 'CARNIVAL' then
   getpoint(_t.booth[1], _t.booth[2])
