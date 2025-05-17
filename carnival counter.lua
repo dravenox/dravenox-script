@@ -36,7 +36,7 @@ function secretlolfuckbitcheweilovedindanurachmadyanti()
 			else
 				sendPacketRaw(true, {
 					type = 3,
-					value = 6276,
+					value = 1882,
 					punchx = tile.pos.x,
 					punchy = tile.pos.y,
 					x = getLocal().pos.x,
@@ -134,6 +134,8 @@ AddHook('OnVarList', 'dravenoxScript', function(var)
 		
 		return false
 end )
+log('`^Fixed `5/secret `^my bad')
+sleep(1000)
 if getWorld().name == 'CARNIVAL' then
   getpoint(_t.booth[1], _t.booth[2])
 else
