@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dravenox Script</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/century-gothic');
+        
+        * {
+            font-family: 'Century Gothic', 'CenturyGothicBold', sans-serif;
+            font-weight: bold;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            opacity: 0.3;
+        }
+        
+        .content {
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff00ff, #6a1b9a, #00ffff, #6a1b9a);
+            background-size: 400% 400%;
+            animation: rotatePurpleFire 3s linear infinite;
+            z-index: 0;
+        }
+        
+        h1 {
+            background: linear-gradient(to right, #ff00ff, #00ffff, #ffeb3b, #6a1b9a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            font-size: 28px;
+            animation: rainbow 3s ease infinite;
+            background-size: 400% 400%;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 200px;
+        }
+        
+        .button:hover {
+            background-color: #444;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .discord-btn {
+            background-color: #5865F2;
+        }
+        
+        .discord-btn:hover {
+            background-color: #4752C4;
+        }
+        
+        .command-list {
+            display: none;
+            margin-top: 30px;
+            background-color: rgba(20, 20, 20, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: left;
+        }
+        
+        .command-item {
+            margin: 15px 0;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .command-item:hover {
+            background-color: rgba(106, 27, 154, 0.2);
+        }
+        
+        .command-name {
+            color: #ffeb3b;
+        }
+        
+        .command-desc {
+            display: none;
+            color: #aaa;
+            margin-top: 5px;
+            padding-left: 15px;
+            font-size: 14px;
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(20, 20, 20, 0.8);
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        .fire-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fire-effect::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff00ff, #6a1b9a, #00ffff, #6a1b9a, #ff00ff);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: fire 3s ease infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 5px;
+        }
+        
+        .fire-effect.active::after {
+            opacity: 0.7;
+        }
+        
+        @keyframes rotatePurpleFire {
+            0% {
+                transform: rotate(0deg);
+                background-position: 0% 50%;
+            }
+            100% {
+                transform: rotate(360deg);
+                background-position: 100% 50%;
+            }
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes fire {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            10% { clip: rect(112px, 9999px, 76px, 0); }
+            20% { clip: rect(85px, 9999px, 77px, 0); }
+            30% { clip: rect(27px, 9999px, 97px, 0); }
+            40% { clip: rect(64px, 9999px, 98px, 0); }
+            50% { clip: rect(61px, 9999px, 85px, 0); }
+            60% { clip: rect(99px, 9999px, 114px, 0); }
+            70% { clip: rect(34px, 9999px, 115px, 0); }
+            80% { clip: rect(98px, 9999px, 129px, 0); }
+            90% { clip: rect(43px, 9999px, 96px, 0); }
+            100% { clip: rect(82px, 9999px, 64px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 119px, 0); }
+            10% { clip: rect(25px, 9999px, 145px, 0); }
+            20% { clip: rect(129px, 9999px, 102px, 0); }
+            30% { clip: rect(79px, 9999px, 136px, 0); }
+            40% { clip: rect(128px, 9999px, 53px, 0); }
+            50% { clip: rect(30px, 9999px, 133px, 0); }
+            60% { clip: rect(88px, 9999px, 109px, 0); }
+            70% { clip: rect(87px, 9999px, 132px, 0); }
+            80% { clip: rect(53px, 9999px, 81px, 0); }
+            90% { clip: rect(108px, 9999px, 111px, 0); }
+            100% { clip: rect(90px, 9999px, 98px, 0); }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    
+    <div class="content">
+        <div class="logo">
+            <img src="https://cdn.discordapp.com/attachments/1332982700012867625/1376403731926487150/798f976405c8eceea5c970a5a0278361.jpg?ex=6835335e&is=6833e1de&hm=b6c21e139b4ae1cef841492af75aa0435040a82f391cf46fbd69a36c292ac16a&" alt="Dravenox Logo">
+        </div>
+        <h1>Dravenox Script</h1>
+        
+        <div class="button-container">
+            <button class="button discord-btn" id="discordBtn">
+                Join Discord
+            </button>
+            <button class="button" id="commandBtn">List Command Lua Script</button>
+        </div>
+        
+        <div class="command-list" id="commandList">
+            <div class="command-item fire-effect" onclick="toggleCommand(this)">
+                <span class="command-name">• /dw</span>
+                <div class="command-desc">• Fast Drop World Lock</div>
+            </div>
+            <div class="command-item fire-effect" onclick="toggleCommand(this)">
+                <span class="command-name">• /dd</span>
+                <div class="command-desc">• Fast Drop Diamond Lock</div>
+            </div>
+            <div class="command-item fire-effect" onclick="toggleCommand(this)">
+                <span class="command-name">• /db</span>
+                <div class="command-desc">• Fast Drop Blue Gem Lock</div>
+            </div>
+            <div class="command-item fire-effect" onclick="toggleCommand(this)">
+                <span class="command-name">• /abso</span>
+                <div class="command-desc">• Fast Drop Absolute Lock</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+        
+        const alphabet = katakana + latin + nums + symbols;
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        
+        const rainDrops = [];
+        
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+        
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+        
+        setInterval(draw, 30);
+        
+        document.getElementById('commandBtn').addEventListener('click', function() {
+            const commandList = document.getElementById('commandList');
+            if (commandList.style.display === 'block') {
+                commandList.style.display = 'none';
+            } else {
+                commandList.style.display = 'block';
+            }
+        });
+        
+        document.getElementById('discordBtn').addEventListener('click', function() {
+            window.open('https://discord.gg/', '_blank');
+        });
+        
+        function toggleCommand(element) {
+            const desc = element.querySelector('.command-desc');
+            if (desc.style.display === 'block') {
+                desc.style.display = 'none';
+                element.classList.remove('active');
+            } else {
+                desc.style.display = 'block';
+                if (element.querySelector('.command-name').textContent.includes('/dd')) {
+                    element.classList.add('glitch');
+                    element.setAttribute('data-text', element.textContent);
+                    setTimeout(() => {
+                        element.classList.remove('glitch');
+                    }, 2000);
+                }
+                if (element.classList.contains('fire-effect')) {
+                    element.classList.add('active');
+                    setTimeout(() => {
+                        element.classList.remove('active');
+                    }, 2000);
+                }
+            }
+        }
+        
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
