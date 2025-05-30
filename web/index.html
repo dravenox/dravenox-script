@@ -122,40 +122,6 @@
             background-color: #4752C4;
         }
         
-        .command-list {
-            display: none;
-            margin-top: 30px;
-            background-color: rgba(20, 20, 20, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 600px;
-            text-align: left;
-        }
-        
-        .command-item {
-            margin: 15px 0;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        .command-item:hover {
-            background-color: rgba(106, 27, 154, 0.2);
-        }
-        
-        .command-name {
-            color: #ffeb3b;
-        }
-        
-        .command-desc {
-            display: none;
-            color: #aaa;
-            margin-top: 5px;
-            padding-left: 15px;
-            font-size: 14px;
-        }
-        
         .glitch {
             position: relative;
         }
@@ -276,33 +242,6 @@
             </button>
             <button class="button" id="commandBtn">List Command Lua Script</button>
         </div>
-        
-        <div class="command-list" id="commandList">
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /dw</span>
-                <div class="command-desc">• Fast Drop World Lock</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /dd</span>
-                <div class="command-desc">• Fast Drop Diamond Lock</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /db</span>
-                <div class="command-desc">• Fast Drop Blue Gem Lock</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /abso</span>
-                <div class="command-desc">• Fast Drop Absolute Lock</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /cd</span>
-                <div class="command-desc">• Fast Drop Custom Lock</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• more command</span>
-                <div class="command-desc">• more command join discord</div>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -349,40 +288,12 @@
         setInterval(draw, 30);
         
         document.getElementById('commandBtn').addEventListener('click', function() {
-            const commandList = document.getElementById('commandList');
-            if (commandList.style.display === 'block') {
-                commandList.style.display = 'none';
-            } else {
-                commandList.style.display = 'block';
-            }
+            window.location.href = 'commandlist.html';
         });
         
         document.getElementById('discordBtn').addEventListener('click', function() {
             window.open('https://discord.gg/dbqgG2FySZ', '_blank');
         });
-        
-        function toggleCommand(element) {
-            const desc = element.querySelector('.command-desc');
-            if (desc.style.display === 'block') {
-                desc.style.display = 'none';
-                element.classList.remove('active');
-            } else {
-                desc.style.display = 'block';
-                if (element.querySelector('.command-name').textContent.includes('/dd')) {
-                    element.classList.add('glitch');
-                    element.setAttribute('data-text', element.textContent);
-                    setTimeout(() => {
-                        element.classList.remove('glitch');
-                    }, 2000);
-                }
-                if (element.classList.contains('fire-effect')) {
-                    element.classList.add('active');
-                    setTimeout(() => {
-                        element.classList.remove('active');
-                    }, 2000);
-                }
-            }
-        }
         
         window.addEventListener('resize', function() {
             canvas.width = window.innerWidth;
