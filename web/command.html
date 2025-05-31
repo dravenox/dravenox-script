@@ -6,7 +6,6 @@
     <title>Dravenox Script - Command List</title>
     <style>
         @import url('https://fonts.cdnfonts.com/css/century-gothic');
-        
         * {
             font-family: 'Century Gothic', 'CenturyGothicBold', sans-serif;
             font-weight: bold;
@@ -131,10 +130,18 @@
             background: linear-gradient(45deg, #6a1b9a, #00ffff);
         }
         
+        .section-title {
+            color: #ff00ff;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #6a1b9a;
+        }
+        
         .command-item {
-            margin: 15px 0;
+            margin: 8px 0;
             cursor: pointer;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
             transition: all 0.3s ease;
             border-left: 3px solid transparent;
@@ -147,10 +154,17 @@
         }
         
         .command-name {
-            color: #ffeb3b;
-            font-size: 16px;
+            font-size: 14px;
             display: block;
             margin-bottom: 5px;
+        }
+        
+        .command-text {
+            color: #ffeb3b;
+        }
+        
+        .parameter {
+            color: #00ffff;
         }
         
         .command-desc {
@@ -158,7 +172,7 @@
             color: #aaa;
             margin-top: 8px;
             padding-left: 15px;
-            font-size: 14px;
+            font-size: 13px;
             border-left: 2px solid #6a1b9a;
             padding-left: 10px;
         }
@@ -274,102 +288,89 @@
 </head>
 <body>
     <canvas id="matrix"></canvas>
-    
     <div class="content">
         <div class="header">
             <div class="logo">
-                <img src="https://cdn.discordapp.com/attachments/1286321432355405824/1377215313799680061/20250405_041054.png?ex=68382736&is=6836d5b6&hm=f49756d9e9d6b935b7166b1db5986585d2c4bc415bd8b99c67dcab4dab7c6b9a&" alt="Dravenox Logo">
+                <img src="https://cdn.discordapp.com/attachments/1286321432355405824/1377215313799680061/20250405_041054.png?ex=68382736&is=6836d5b6&hm=f49756d9e9d6b935b7166b1db5986585d2c4bc415bd8b99c67dcab4dab7c6b9a&" alt="🤙">
             </div>
-            <h1>Command List</h1>
-            <button class="back-btn" onclick="window.history.back()">← Back to Home</button>
+            <h1>Helper GTFY Command</h1>
+            <button class="back-btn" onclick="window.history.back()">Back to Home</button>
         </div>
         
         <div class="command-container">
+            <div class="section-title">Drop Command :</div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /dw</span>
-                <div class="command-desc">• Fast Drop World Lock</div>
+                <span class="command-name">• <span class="command-text">/dw</span> <span class="parameter">amount</span></span>
+                <div class="command-desc">• Drop World Lock</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /dd</span>
-                <div class="command-desc">• Fast Drop Diamond Lock</div>
+                <span class="command-name">• <span class="command-text">/dd</span> <span class="parameter">amount</span></span>
+                <div class="command-desc">• Drop Diamond Lock</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /db</span>
-                <div class="command-desc">• Fast Drop Blue Gem Lock</div>
+                <span class="command-name">• <span class="command-text">/db</span> <span class="parameter">amount</span></span>
+                <div class="command-desc">• Drop Blue Gem Lock</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /abso</span>
-                <div class="command-desc">• Fast Drop Absolute Lock</div>
+                <span class="command-name">• <span class="command-text">/abso</span> <span class="parameter">amount</span></span>
+                <div class="command-desc">• Drop Absolute Lock</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /cd</span>
-                <div class="command-desc">• Fast Drop Custom Lock</div>
+                <span class="command-name">• <span class="command-text">/cd</span> <span class="parameter">amount</span></span>
+                <div class="command-desc">• Drop Custom Lock</div>
+            </div>
+
+            <div class="section-title">Usefull Command</div>
+            <div class="command-item fire-effect" onclick="toggleCommand(this)">
+                <span class="command-name">• <span class="command-text">/thermo</span> <span class="parameter">name</span></span>
+                <div class="command-desc">• Shortcut For Using Thermonuclear Blast</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /tp</span>
-                <div class="command-desc">• Teleport to location</div>
+                <span class="command-name">• <span class="command-text">/wrench</span></span>
+                <div class="command-desc">• Open Wrench Setting</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /speed</span>
-                <div class="command-desc">• Increase movement speed</div>
+                <span class="command-name">• <span class="command-text">/depo</span> <span class="parameter">amount</span></span>
+                <div class="command-desc">• Deposited Ur Blue Gem Lock Into Bank</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /fly</span>
-                <div class="command-desc">• Enable fly mode</div>
+                <span class="command-name">• <span class="command-text">/wd</span> <span class="parameter">amount</span></span>
+                <div class="command-desc">• Withdrawed Ur Blue Gem Lock From Bank</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /noclip</span>
-                <div class="command-desc">• Walk through walls</div>
+                <span class="command-name">• <span class="command-text">/tf</span> <span class="parameter">name</span></span>
+                <div class="command-desc">• Transfer Ur Blue Gem Lock To Players</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /auto</span>
-                <div class="command-desc">• Auto farming system</div>
+                <span class="command-name">• <span class="command-text">/back</span></span>
+                <div class="command-desc">• Back To Last Visited World</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /collect</span>
-                <div class="command-desc">• Auto collect items</div>
+                <span class="command-name">• <span class="command-text">/scan</span></span>
+                <div class="command-desc">• Extract Item By Click Button ( Like Extract O Snap )</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /break</span>
-                <div class="command-desc">• Fast break blocks</div>
+                <span class="command-name">• <span class="command-text">/addition</span></span>
+                <div class="command-desc">• Open Usefull Feature</div>
             </div>
+
+            <div class="section-title">Utility Feature</div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /place</span>
-                <div class="command-desc">• Fast place blocks</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /spin</span>
-                <div class="command-desc">• Spin wheel automation</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /casino</span>
-                <div class="command-desc">• Casino game automation</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /warp</span>
+                <span class="command-name">• <span class="command-text">/wp</span> <span class="parameter">name</span></span>
                 <div class="command-desc">• Quick world warping</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /spam</span>
-                <div class="command-desc">• Text spam automation</div>
+                <span class="command-name">• <span class="command-text">/pullall</span></span>
+                <div class="command-desc">• Pull All Players In World</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /pull</span>
-                <div class="command-desc">• Pull players to you</div>
+                <span class="command-name">• <span class="command-text">/banall</span></span>
+                <div class="command-desc">• Ban All Players In World</div>
             </div>
             <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /ban</span>
-                <div class="command-desc">• Ban system for world owners</div>
+                <span class="command-name">• <span class="command-text">/kickall</span></span>
+                <div class="command-desc">• Kick All Players In World</div>
             </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• /kick</span>
-                <div class="command-desc">• Kick players from world</div>
-            </div>
-            <div class="command-item fire-effect" onclick="toggleCommand(this)">
-                <span class="command-name">• more command</span>
-                <div class="command-desc">• more command join discord</div>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -417,16 +418,31 @@
         
         function toggleCommand(element) {
             const desc = element.querySelector('.command-desc');
-            const isVisible = desc.classList.contains('show');
-            
-            document.querySelectorAll('.command-desc').forEach(d => d.classList.remove('show'));
-            document.querySelectorAll('.command-item').forEach(item => {
-                item.classList.remove('active', 'glitch');
-            });
-            
-            if (!isVisible) {
-                desc.classList.add('show');
-                
+            if (desc.style.display === 'block') {
+                desc.style.display = 'none';
+                element.classList.remove('active');
+            } else {
+                desc.style.display = 'block';
                 if (element.querySelector('.command-name').textContent.includes('/dd')) {
                     element.classList.add('glitch');
-                    element.setAttribute
+                    element.setAttribute('data-text', element.textContent);
+                    setTimeout(() => {
+                        element.classList.remove('glitch');
+                    }, 2000);
+                }
+                if (element.classList.contains('fire-effect')) {
+                    element.classList.add('active');
+                    setTimeout(() => {
+                        element.classList.remove('active');
+                    }, 2000);
+                }
+            }
+        }
+        
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
