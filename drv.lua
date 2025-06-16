@@ -5,4 +5,4 @@ end
 sleep(500)
 sendVariant({ [0] = 'OnTextOverlay', [1] = '`5Join Discord For Get New Loader Script !' })
 sleep(200)
-logToConsole('`5Discord Link :`` `^https://dravenox-script.vercel.app`` .')
+logToConsole('`5Discord Link :`` `^https://dravenox-script.vercel.app``')
