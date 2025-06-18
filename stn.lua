@@ -2,7 +2,6 @@ local accountList = [[
 bibzz|bib2008...
 bienze|bienzing23
 bienzo|sb23456
-bimaAREKsedati|bima12345
 byan|byanja12
 cahyaa|muhammad
 callmefofo|Aa688388
