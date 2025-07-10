@@ -1,8 +1,7 @@
 let cachedData = null;
 
 export default async function handler(req, res) {
-  const AUTH_TOKEN = 'dravenox-secret-token'; // GANTI dengan token milikmu sendiri
-
+  const AUTH_TOKEN = 'drvnx'; 
   if (req.method === 'POST') {
     const token = req.headers.authorization?.split(' ')[1];
 
@@ -13,7 +12,7 @@ export default async function handler(req, res) {
     try {
       const data = req.body;
 
-      // Validasi kasar, minimal harus ada 1 kategori
+      
       if (!data || typeof data !== 'object') {
         return res.status(400).json({ error: 'Invalid JSON' });
       }
