@@ -100,7 +100,7 @@ local char = {
  int: userId,
  int: netId,
  int: status,
- bool: facing,
+ boolean: facing,
  int: ping,
  int: punchId,
  int: gems,
@@ -109,14 +109,61 @@ local char = {
  vector4i: skinColor,
  vector4i: quickSlot,
  uint32_t: selectedItem,
- uint32_t	hair
- uint32_t	shirt
- uint32_t	pants
- uint32_t	feet
- uint32_t	face
- uint32_t	hand
- uint32_t	back
- uint32_t	mask
- uint32_t	necklace
+ uin32_t: hair,
+ uin32_t: shirt,
+ uint32_t: pants,
+ uint32_t: feet,
+ uint32_t: face,
+ uint32_t: hand,
+ uint32_t: back,
+ uint32_t: mask,
+ uint32_t: necklace
+}
+```
+
+## TileStruct
+```lua
+local tile = {
+ vector2i: pos,
+ int: fg,
+ int: bg,
+ boolean: isCollideable,
+ int: collisionType,
+ int: flags,
+ tilFlag: getFlags
+}
+```
+
+## TileExtra
+```lua
+local extra = {
+ boolean: valid,
+ int: type,
+ int: growth,
+ int: flags,
+ int: owner,
+ std::list<uint32_t>: adminList,
+ boolean: ready,
+ string: label,
+ string: padding1,
+ int: volume,
+ int: fruitCount,
+ int: lastUpdate
+}
+```
+
+## TileFlag
+```lua
+local tileFlag = {
+ boolean: locked,
+ boolean: area,
+ boolean: flipped,
+ boolean: enbaled,
+ boolean: public,
+ boolean: silenced,
+ boolean: water,
+ boolean: glue,
+ boolean: burn,
+ boolean: painted
 }
 ```
