@@ -57,3 +57,26 @@
 
 **Webhook Structute**
 * [...](#...)
+
+### Structure 
+## TankPacketStruct
+```lua
+local tank = {
+ int: type
+ int: padding1
+ int: padding2
+ int: padding3
+ int: netid
+ int: secid
+ int: state
+ float: padding4
+ int: value
+ float: x
+ float: y
+ float: speedx
+ float: speedy
+ int: punchx
+ int: punchy
+ int: padding5
+}
+```
