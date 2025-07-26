@@ -58,25 +58,65 @@
 **Webhook Structute**
 * [...](#...)
 
-### Structure 
+-
+
 ## TankPacketStruct
 ```lua
-local tank = {
- int: type
- int: padding1
- int: padding2
- int: padding3
- int: netid
- int: secid
- int: state
- float: padding4
- int: value
- float: x
- float: y
- float: speedx
- float: speedy
- int: punchx
- int: punchy
+local tankPacket = {
+ int: type,
+ int: padding1,
+ int: padding2,
+ int: padding3,
+ int: netid,
+ int: secid,
+ int: state,
+ float: padding4,
+ int: value,
+ float: x,
+ float: y,
+ float: speedx,
+ float: speedy,
+ int: punchx,
+ int: punchy,
  int: padding5
+}
+```
+
+## Camera
+```lua
+local camera = {
+ float: scale,
+ vector2f: pos,
+ vector2f: center
+}
+```
+
+## NetAvatar
+```lua
+local char = {
+ vector2i: pos,
+ string: name,
+ string: country,
+ int: userId,
+ int: netId,
+ int: status,
+ bool: facing,
+ int: ping,
+ int: punchId,
+ int: gems,
+ int: gemsCollected,
+ int: backpackSlot,
+ vector4i: skinColor,
+ vector4i: quickSlot,
+ uint32_t: selectedItem,
+ uint32_t	hair
+ uint32_t	shirt
+ uint32_t	pants
+ uint32_t	feet
+ uint32_t	face
+ uint32_t	hand
+ uint32_t	back
+ uint32_t	mask
+ uint32_t	necklace
 }
 ```
