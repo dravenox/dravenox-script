@@ -23,4 +23,10 @@ drvnx.write = function(str_f, data)
 		x:close()
 end
 
+drvnx.world = function(int)
+	if int == 1 then
+		return getWorld().name 
+	end 
+end
+
 return drvnx
