@@ -17,4 +17,10 @@ drvnx.warp = function(name)
 		)
 end 
 
+drvnx.write = function(str_f, data)
+		local x = io.open('/storage/emulated/0/Android/media/GENTAHAX/'.. str_f ..'.txt', 'a')
+		x:write(data ..'\n')
+		x:close()
+end
+
 return drvnx
