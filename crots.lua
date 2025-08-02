@@ -36,10 +36,10 @@ local function getPetImage(petName)
 	end
 end
 
+-- Track multiple eggs and their hatch times
 local activeEggs = {}
 local hatchEvents = {}
 local processedPets = {}
-local existingPets = {}
 local sendQueue = {}
 local sending = false
 
@@ -73,21 +73,7 @@ local function processQueue()
 	sending = false
 end
 
-spawn(function()
-	wait(2)
-	pcall(function()
-		local playerWorkspace = workspace:FindFirstChild(player.Name)
-		if playerWorkspace then
-			for _, child in pairs(playerWorkspace:GetChildren()) do
-				if child:IsA("Model") and child.Name:find("%[.*KG%]") then
-					local petId = child.Name .. "_" .. tostring(child:GetDebugId())
-					existingPets[petId] = true
-				end
-			end
-		end
-	end)
-end)
-
+-- Monitor eggs and hatch events
 spawn(function()
 	while wait(0.1) do
 		pcall(function()
@@ -95,6 +81,7 @@ spawn(function()
 				for _, child in pairs(workspace.Visuals:GetChildren()) do
 					local name = child.Name:lower()
 					if name:find("egg") and not name:find("eggpoof") and not name:find("eggexplode") then
+						-- Track active eggs
 						if not activeEggs[child.Name] then
 							activeEggs[child.Name] = {
 								name = child.Name,
@@ -102,6 +89,7 @@ spawn(function()
 							}
 						end
 					elseif name:find("eggexplode") then
+						-- Record hatch event with current time
 						table.insert(hatchEvents, {
 							time = tick(),
 							processed = false
@@ -109,6 +97,7 @@ spawn(function()
 					end
 				end
 				
+				-- Clean up old eggs that no longer exist
 				for eggName, _ in pairs(activeEggs) do
 					local exists = false
 					for _, child in pairs(workspace.Visuals:GetChildren()) do
@@ -126,6 +115,7 @@ spawn(function()
 	end
 end)
 
+-- Monitor for new pets and match them with hatch events
 spawn(function()
 	while wait(0.3) do
 		pcall(function()
@@ -133,10 +123,12 @@ spawn(function()
 			if playerWorkspace then
 				for _, child in pairs(playerWorkspace:GetChildren()) do
 					if child:IsA("Model") and child.Name:find("%[.*KG%]") then
+						-- Create unique identifier using full name + creation time
 						local petFullName = child.Name
 						local petId = petFullName .. "_" .. tostring(child:GetDebugId())
 						
-						if not existingPets[petId] and not processedPets[petId] then
+						if not processedPets[petId] then
+							-- Find the most recent unprocessed hatch event
 							local recentHatchTime = nil
 							for i = #hatchEvents, 1, -1 do
 								local hatchEvent = hatchEvents[i]
@@ -149,7 +141,6 @@ spawn(function()
 							
 							if recentHatchTime then
 								processedPets[petId] = true
-								existingPets[petId] = true
 								
 								local petNameRaw = child.Name:split("[")[1]:gsub("%s+$", "")
 								local petName = Capitalize(petNameRaw)
@@ -163,10 +154,11 @@ spawn(function()
 
 								local petImage = getPetImage(petName)
 								
+								-- Try to determine which egg this came from (use most recent active egg as fallback)
 								local eggName = "an Egg"
 								for name, data in pairs(activeEggs) do
 									eggName = name
-									break
+									break -- Use any active egg name
 								end
 
 								local embed = {
@@ -187,34 +179,31 @@ spawn(function()
 	end
 end)
 
+-- Clean up old processed pets and hatch events
 spawn(function()
 	while wait(30) do
 		pcall(function()
+			-- Clean up old hatch events (older than 15 seconds)
 			for i = #hatchEvents, 1, -1 do
 				if tick() - hatchEvents[i].time > 15 then
 					table.remove(hatchEvents, i)
 				end
 			end
 			
+			-- Clean up processed pets that no longer exist
 			local playerWorkspace = workspace:FindFirstChild(player.Name)
 			if playerWorkspace then
-				local currentPets = {}
+				local existingPets = {}
 				for _, child in pairs(playerWorkspace:GetChildren()) do
 					if child:IsA("Model") and child.Name:find("%[.*KG%]") then
 						local petId = child.Name .. "_" .. tostring(child:GetDebugId())
-						currentPets[petId] = true
+						existingPets[petId] = true
 					end
 				end
 				
 				for petId, _ in pairs(processedPets) do
-					if not currentPets[petId] then
+					if not existingPets[petId] then
 						processedPets[petId] = nil
-					end
-				end
-				
-				for petId, _ in pairs(existingPets) do
-					if not currentPets[petId] then
-						existingPets[petId] = nil
 					end
 				end
 			end
