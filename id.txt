@@ -1,3 +1,4 @@
 uid = {
-    { did = "1071637569147768903", key = "KMmPLjpJfA" }
+    { did = "1071637569147768903", key = "KMmPLjpJfA" },
+    { did = "1288334986750988298", key = "Zogf2TMs9Y" }
 }
