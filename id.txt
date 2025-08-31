@@ -3,3 +3,4 @@ uid = {
     { did = "1288334986750988298", key = "Zogf2TMs9Y" },
     { did = "1166402406628724853", key = "3cKg2odDd1" }
 }
+return uid
