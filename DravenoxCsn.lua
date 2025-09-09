@@ -1,5 +1,8 @@
-logToConsole("`2User Authorization!")
-sleep(2000)
-logToConsole("`4Please Install News Version GENTAHAX !")
-sleep(2000)
+
 logToConsole("`9Script Under Maintenance.")
+AddHook("OnTextPacket",".", function(_, str)
+    if str:find("/s") then
+      logToConsole("hello world!")
+      return true 
+    end
+  end)
